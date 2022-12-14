@@ -73,7 +73,7 @@ public class DownloadAttachController extends HttpServlet {
 			String fileName = author.getFileName();
 			String filePath = "C:/OTI/WebProjects/workspace/bookShopping/WebContent/resources/images/imageOfAuthor/" + author.getSavedName();
 			String contentType = author.getFileType();
-			
+			System.out.println(fileName);
 			//HTTP 응답에 Content-Type 헤더를 추가
 			response.setContentType(contentType);
 			//response.setHeader("Content-Type, contentType;}

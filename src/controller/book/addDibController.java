@@ -33,11 +33,11 @@ public class addDibController extends HttpServlet {
 			int result = searchService.dibs(dibDto);
 			if (result > 0) {
 				System.out.println("찜 목록에 추가되었습니다.");
-				String url = "/shopping/controller/book/bookInfoController?bookNo=" + bookNo;
+				String url = "/shopping/controller/book/bookInfoController?bookNo=" + bookNo + "&dibAdd=success";
 				response.sendRedirect(url);
 			} else {
 				System.out.println("이미 해당상품이 찜 목록에 존재합니다.");
-				String url = "/shopping/controller/book/bookInfoController?bookNo=" + bookNo;
+				String url = "/shopping/controller/book/bookInfoController?bookNo=" + bookNo+ "&dibAdd=fail";
 				response.sendRedirect(url);
 			}
 		} else {

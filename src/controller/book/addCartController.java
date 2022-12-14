@@ -34,12 +34,12 @@ public class addCartController extends HttpServlet {
 			int result = cartsService.cartsBoardPlus(cartdto);
 			if(result > 0) {
 				System.out.println("장바구니에 담겼습니다.");
-				String url = "/shopping/controller/book/bookInfoController?bookNo=" + bookNo;
+				String url = "/shopping/controller/book/bookInfoController?bookNo=" + bookNo + "&cartAdd=success";
 				response.sendRedirect(url);
 			}
 			else {
 				System.out.println("이미 장바구니에 해당 상품이 존재합니다");
-				String url = "/shopping/controller/book/bookInfoController?bookNo=" + bookNo;
+				String url = "/shopping/controller/book/bookInfoController?bookNo=" + bookNo + "&cartAdd=fail";
 				response.sendRedirect(url);
 			}
 		}

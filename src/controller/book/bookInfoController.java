@@ -43,6 +43,8 @@ public class bookInfoController extends HttpServlet {
 		request.setAttribute("authorList", authorList);
 		request.setAttribute("reviewList", reviewList);
 		request.setAttribute("authorSize", authorList.size());
+		request.setAttribute("cartAdd", request.getParameter("cartAdd"));
+		request.setAttribute("dibAdd", request.getParameter("dibAdd"));
 		if(authorList.size() > 0) {
 			request.setAttribute("firstAuthor", authorList.get(0));
 		}

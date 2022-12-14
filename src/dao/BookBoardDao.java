@@ -58,15 +58,17 @@ public class BookBoardDao {
 		ArrayList<AuthorDto> authorlist = new ArrayList<AuthorDto>();
 
 		try {
-			String sql = "SELECT author_name, nvl(author_detail, '저자 정보가 없습니다.') as author_detail "
+			String sql = "SELECT a.author_no, author_name, nvl(author_detail, '저자 정보가 없습니다.') as author_detail, filename "
 					+ "FROM author_book ab, authors a " + "WHERE ab.author_no = a.author_no " + "AND ab.book_no = ? ";
 			PreparedStatement pstmt = conn.prepareStatement(sql);
 			pstmt.setInt(1, bookDto.getBook_no());
 			ResultSet rs = pstmt.executeQuery();
 			while (rs.next()) {
 				AuthorDto aDto = new AuthorDto();
+				aDto.setAuthor_no(rs.getInt("author_no"));
 				aDto.setAuthor_name(rs.getString("author_name"));
 				aDto.setAuthor_detail(rs.getString("author_detail"));
+				aDto.setFileName(rs.getString("filename"));
 				authorlist.add(aDto);
 			}
 			rs.close();

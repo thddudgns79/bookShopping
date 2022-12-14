@@ -151,8 +151,70 @@
 				<div class = "col-sm-3"><a href = "#"><img src = "${pageContext.request.contextPath}/resources/images/imageOfBook/mainLogo.png" class = "w-75 h-75"/></a></div>
 				<div class = "col-sm-5"><input type="text" class="form-control" placeholder="책제목/저자명/출판사/해시태그 검색" id = "searchBox" onchange = "urlChange()"></div>
 				<div class = "col-sm-2"><a href = "" class = "btn btn-primary" id = "searchButton">검색</a></div>
-				<div class = "col-sm-1 pr-0"><a href = "${pageContext.request.contextPath}/controller/user/cartDetailController"><img src = "${pageContext.request.contextPath}/resources/images/imageOfBook/장바구니.png" class = "rounded w-50 h-50"/></a></div>
-				<div class = "col-sm-1 pl-0"><a href = "${pageContext.request.contextPath}/controller/user/myPageMainController"><img src = "${pageContext.request.contextPath}/resources/images/imageOfBook/마이페이지.png" class = "rounded w-50 h-50"/></a></div>
+				<!-- 장바구니 -->
+				<div class = "col-sm-1 pr-0">
+					<!-- 로그인 유무 -->
+					<c:if test="${userDto.user_id != null }">
+						<a href = "${pageContext.request.contextPath}/controller/user/cartDetailController">
+							<img src = "${pageContext.request.contextPath}/resources/images/imageOfBook/장바구니.png" class = "rounded w-50 h-50"/>
+						</a>
+					</c:if>
+					<c:if test="${userDto.user_id == null }">
+						<a type="button" class ="btn btn-lg" data-toggle="modal" data-target="#myModal">
+							<img src = "${pageContext.request.contextPath}/resources/images/imageOfBook/장바구니.png" class = "rounded w-100 h-100"/>
+						</a>
+						<!-- The Modal -->
+						<div class="modal fade" id="myModal">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<!-- Modal body -->
+									<div class="modal-body">
+										<span>로그인이 필요합니다.</span>
+									</div>
+			
+									<!-- Modal footer -->
+									<div class="modal-footer">
+										<a href="${pageContext.request.contextPath}/controller/user/loginController"><button class="btn btn-sm" style="background-color:rgb(88,39,35);color:#ffffff;">로그인</button></a>
+										<button type="button" class="btn btn-sm" data-dismiss="modal" style="background-color:red;color:#ffffff;">Close</button>
+									</div>
+							      
+								</div>
+							</div>
+						</div>
+					</c:if>
+				</div>
+								<!-- 마이페이지 -->
+				<div class = "col-sm-1 pl-0">
+					<!-- 로그인 유무 -->
+					<c:if test="${userDto.user_id != null }">
+						<a href = "${pageContext.request.contextPath}/controller/user/myPageMainController">
+							<img src = "${pageContext.request.contextPath}/resources/images/imageOfBook/마이페이지.png" class = "rounded w-50 h-50"/>
+						</a>
+					</c:if>
+					<c:if test="${userDto.user_id == null }">
+						<a type="button" class ="btn btn-lg" data-toggle="modal" data-target="#myModal">
+							<img src = "${pageContext.request.contextPath}/resources/images/imageOfBook/마이페이지.png" class = "rounded w-100 h-100"/>
+						</a>
+						<!-- The Modal -->
+						<div class="modal fade" id="myModal">
+							<div class="modal-dialog">
+								<div class="modal-content">
+									<!-- Modal body -->
+									<div class="modal-body">
+										<span>로그인이 필요합니다.</span>
+									</div>
+			
+									<!-- Modal footer -->
+									<div class="modal-footer">
+										<a href="${pageContext.request.contextPath}/controller/user/loginController"><button class="btn btn-sm" style="background-color:rgb(88,39,35);color:#ffffff;">로그인</button></a>
+										<button type="button" class="btn btn-sm" data-dismiss="modal" style="background-color:red;color:#ffffff;">Close</button>
+									</div>
+							      
+								</div>
+							</div>
+						</div>						
+					</c:if>
+				</div>
 			</div>
 			
 		</div>

@@ -44,6 +44,24 @@
 			}
 		</style>
 		<script>
+			$(function(){
+				$('#cas').modal({
+		       		 fadeDuration: 250
+		    	 });
+				
+				$('#caf').modal({
+		       		 fadeDuration: 250
+		    	 });
+				
+				$('#das').modal({
+		       		 fadeDuration: 250
+		    	 });
+				
+				$('#daf').modal({
+		       		 fadeDuration: 250
+		    	 });
+			})
+				
 			function cartPlus(){
 				var count = parseInt($("#cartQty").val());
 				if(count <= 98){
@@ -72,12 +90,69 @@
 				var count = $("#cartQty").attr("value");
 				var queryString = "${pageContext.request.contextPath}/controller/book/addCartController?bookNo=${bookInfo.book_no}&bookQty=" + count;
 				$("#addCartButton").attr("href", queryString);
+				$("#caf").show();
 			}
 			
 		</script>
 	</head>
 	<body>
 		<div id = "wrapper">
+			<c:if test="${cartAdd != null && cartAdd == 'success'}">
+				<!-- The Modal -->
+				<div class="modal fade" id="cas">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<!-- Modal body -->
+							<div class="modal-body">
+								<span>장바구니에 추가되었습니다.</span>
+							</div> 
+						</div>
+					</div>
+				</div>		
+			</c:if>
+			
+			<c:if test="${dibAdd != null && dibAdd == 'success'}">
+				<!-- The Modal -->
+				<div class="modal fade" id="das">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<!-- Modal body -->
+							<div class="modal-body">
+								<span>찜목록에 추가되었습니다.</span>
+							</div> 
+						</div>
+					</div>
+				</div>	
+			</c:if>
+			
+			<c:if test="${cartAdd != null && cartAdd == 'fail'}">
+				<!-- The Modal -->
+				<div class="modal fade" id="caf">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<!-- Modal body -->
+							<div class="modal-body">
+								<span>이미 장바구니에 존재하는 상품입니다.</span>
+							</div> 
+						</div>
+					</div>
+				</div>		
+			</c:if>
+			
+			<c:if test="${dibAdd != null && dibAdd == 'fail'}">
+				<!-- The Modal -->
+				<div class="modal fade" id="daf">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<!-- Modal body -->
+							<div class="modal-body">
+								<span>이미 찜한 상품입니다.</span>
+							</div> 
+						</div>
+					</div>
+				</div>	
+			</c:if>
+			
 			<div class = "container-fluid">
 				  <div class="text-center"><a href = "${pageContext.request.contextPath}/HomeController"><img src = "${pageContext.request.contextPath}/resources/images/imageOfBook/mainLogo.png" style = "width : 500px"/></a></div>
 			         <div class = "container-fluid">
@@ -145,86 +220,87 @@
 				
 				
 				
-				
-				
-				
-				
-				<!--  저자 정보 -->
-				<div class = "row part">
-					<div id = "authorList" class = "col-sm-12">
-						<h3 class = "font-weight-bolder">저자 소개</h3>
-							<c:forEach var = "author" items = "${authorList}">
-								<div class = "card">
+					
+					
+					
+					
+					<!--  저자 정보 -->
+					<div class = "row part">
+						<div id = "authorList" class = "col-sm-12">
+							<h3 class = "font-weight-bolder">저자 소개</h3>
+								<c:forEach var = "author" items = "${authorList}">
+									<div class = "card">
+										<div class = "card-header">
+											<span class = "font-weight-bold ml-3" style="font-size:18px;">${author.author_name}</span>
+										</div>
+										<div class = "card-body">
+											<div class = "container-fluid">
+												<div class = "row">
+													<div class = "col-sm-3">
+														<c:if test="${author.fileName != null}">
+											               	<p>
+											               		<span>
+										               				<img src = "DownloadAttachController?reqType=2&authorNo=${author.author_no}" width = "100"/>
+											               		</span> <br/>
+											               	</p>
+										               </c:if>
+													</div>
+													<div class = "col-sm-9"><p class = "font-weight-normal" style="font-size:15px;">${author.author_detail}</p></div>
+												</div>
+											</div>									
+										</div>
+									</div>
+								</c:forEach>
+													
+							
+						</div>
+					</div>
+					
+					
+					
+					<!--  리뷰 게시판 -->
+					<div class = "row part">
+						<div id = "reviewList"class = "col-sm-12">
+							<h3 class = "font-weight-bold">회원 리뷰</h3>
+							<p>
+								매주 10건의 우수리뷰를 선정하여 YES포인트 3만원을 드립니다.<br>
+								3,000원 이상 구매 후 리뷰 작성 시 일반회원 300원, 마니아회원 600원의 YES포인트를 드립니다.<br>
+								(CD/LP, DVD/Blu-ray, 패션 및 판매금지 상품, 예스24 앱스토어 상품 제외) 
+							</p>
+							<c:forEach var = "review" items = "${reviewList}">
+								<div class = "review card">
 									<div class = "card-header">
-										<span class = "font-weight-bold ml-3" style="font-size:18px;">${author.author_name}</span>
+										<span>${review.user_id}</span> | <span>${review.review_date}</span> | <span>평점 : ${review.review_score}</span>
 									</div>
 									<div class = "card-body">
-										<div class = "container-fluid">
-											<div class = "row">
-												<div class = "col-sm-3">
-													<c:if test="${author.fileName != null}">
-										               	<p>
-										               		<span>
-									               				<img src = "DownloadAttachController?reqType=2&authorNo=${author.author_no}" width = "100"/>
-										               		</span> <br/>
-										               	</p>
-									               </c:if>
-												</div>
-												<div class = "col-sm-9"><p class = "font-weight-normal" style="font-size:15px;">${author.author_detail}</p></div>
-											</div>
-										</div>									
+										<p class = "font-weight-normal" style="font-size:13px;">
+											${review.review_content}
+										</p>
 									</div>
 								</div>
 							</c:forEach>
-												
-						
-					</div>
-				</div>
-				
-				
-				
-				<!--  리뷰 게시판 -->
-				<div class = "row part">
-					<div id = "reviewList"class = "col-sm-12">
-						<h3 class = "font-weight-bold">회원 리뷰</h3>
-						<p>
-							매주 10건의 우수리뷰를 선정하여 YES포인트 3만원을 드립니다.<br>
-							3,000원 이상 구매 후 리뷰 작성 시 일반회원 300원, 마니아회원 600원의 YES포인트를 드립니다.<br>
-							(CD/LP, DVD/Blu-ray, 패션 및 판매금지 상품, 예스24 앱스토어 상품 제외) 
-						</p>
-						<c:forEach var = "review" items = "${reviewList}">
-							<div class = "review card">
-								<div class = "card-header">
-									<span>${review.user_id}</span> | <span>${review.review_date}</span> | <span>평점 : ${review.review_score}</span>
-								</div>
-								<div class = "card-body">
-									<p class = "font-weight-normal" style="font-size:13px;">
-										${review.review_content}
-									</p>
-								</div>
+	
+							<div id = "pagerBar" style = "text-align : center">
+			                     <a href="${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${bookInfo.book_no}&reviewPageNo=1" class="btn btn-outline-primary btn-sm">처음</a>
+			                     <c:if test="${pager.groupNo > 1}">
+			                     	<a href="${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${bookInfo.book_no}&reviewPageNo=${pager.startPageNo-1}" class="btn btn-outline-info btn-sm">이전</a>
+			                     </c:if>
+			                     
+			                     <c:forEach var = "i" begin = "${pager.startPageNo}" end = "${pager.endPageNo}">
+				                     <c:if test="${pager.pageNo != i}">
+				                     	<a href="${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${bookInfo.book_no}&reviewPageNo=${i}" class="btn btn-outline-success btn-sm">${i}</a>
+				                     </c:if>
+				                     <c:if test="${pager.pageNo == i}">
+				                     	<a href="${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${bookInfo.book_no}&reviewPageNo=${i}" class="btn btn-outline-danger btn-sm">${i}</a>
+				                     </c:if>
+			                     </c:forEach>
+			                     
+			                     
+			                     <c:if test="${pager.groupNo < pager.totalGroupNo}">
+			                     	<a href="${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${bookInfo.book_no}&reviewPageNo=${pager.endPageNo+1}" class="btn btn-outline-info btn-sm">다음</a>
+			                     </c:if>
+			                     <a href="${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${bookInfo.book_no}&reviewPageNo=${pager.totalPageNo}" class="btn btn-outline-primary btn-sm">맨끝</a>
 							</div>
-						</c:forEach>
-
-						<div id = "pagerBar" style = "text-align : center">
-		                     <a href="${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${bookInfo.book_no}&reviewPageNo=1" class="btn btn-outline-primary btn-sm">처음</a>
-		                     <c:if test="${pager.groupNo > 1}">
-		                     	<a href="${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${bookInfo.book_no}&reviewPageNo=${pager.startPageNo-1}" class="btn btn-outline-info btn-sm">이전</a>
-		                     </c:if>
-		                     
-		                     <c:forEach var = "i" begin = "${pager.startPageNo}" end = "${pager.endPageNo}">
-			                     <c:if test="${pager.pageNo != i}">
-			                     	<a href="${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${bookInfo.book_no}&reviewPageNo=${i}" class="btn btn-outline-success btn-sm">${i}</a>
-			                     </c:if>
-			                     <c:if test="${pager.pageNo == i}">
-			                     	<a href="${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${bookInfo.book_no}&reviewPageNo=${i}" class="btn btn-outline-danger btn-sm">${i}</a>
-			                     </c:if>
-		                     </c:forEach>
-		                     
-		                     
-		                     <c:if test="${pager.groupNo < pager.totalGroupNo}">
-		                     	<a href="${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${bookInfo.book_no}&reviewPageNo=${pager.endPageNo+1}" class="btn btn-outline-info btn-sm">다음</a>
-		                     </c:if>
-		                     <a href="${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${bookInfo.book_no}&reviewPageNo=${pager.totalPageNo}" class="btn btn-outline-primary btn-sm">맨끝</a>
 						</div>
 					</div>
 				</div>
