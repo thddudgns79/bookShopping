@@ -61,12 +61,14 @@ public class bookOrderController extends HttpServlet {
 		
 		//서비스 실행
 		BuyService buyService = (BuyService)application.getAttribute("BuyService");
-		boolean result = buyService.buy(orderDto, (ArrayList<OrderdetailDto>)session.getAttribute("orderDetails"));
-		
-		if(!result) {
+		String result = buyService.buy(orderDto, (ArrayList<OrderdetailDto>)session.getAttribute("orderDetails"));
+		System.out.println(result);
+		if(result.equals("잔액 부족")||result.equals("재고 부족")) {
+			request.setAttribute("result", result);
 			request.getRequestDispatcher("/WEB-INF/views/book/failOrder.jsp").forward(request, response);
-		} 
-		request.getRequestDispatcher("/WEB-INF/views/book/successOrder.jsp").forward(request, response);
+		} else {
+			request.getRequestDispatcher("/WEB-INF/views/book/successOrder.jsp").forward(request, response);
+		}
 	}
 
 }
