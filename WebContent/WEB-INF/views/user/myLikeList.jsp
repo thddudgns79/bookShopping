@@ -125,11 +125,11 @@
 									<tbody>
 
 										<c:forEach var="SelectDibDto" items="${pageList}">
-												<tr onclick="location.href='${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${SelectDibDto.book_no}'" style="cursor:pointer;">
-													<td>${SelectDibDto.book_no}</td>
-													<td>${SelectDibDto.book_name}</td>
+												<tr>
+													<td onclick="location.href='${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${SelectDibDto.book_no}'" style="cursor:pointer;">${SelectDibDto.book_no}</td>
+													<td onclick="location.href='${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${SelectDibDto.book_no}'" style="cursor:pointer;">${SelectDibDto.book_name}</td>
 	
-													<td>${SelectDibDto.author_name}
+													<td onclick="location.href='${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${SelectDibDto.book_no}'" style="cursor:pointer;">${SelectDibDto.author_name}
 															외 ${SelectDibDto.authorList.size()-1}명
 													</td>
 													

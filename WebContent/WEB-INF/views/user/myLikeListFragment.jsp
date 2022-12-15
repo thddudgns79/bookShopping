@@ -16,11 +16,11 @@
 
 		<c:forEach var="SelectDibDto" items="${pageList}">
 			<tr>
-				<td><a href="/shopping/controller/book/bookInfoController">${SelectDibDto.book_no}</a></td>
-				<td><a href="/shopping/controller/book/bookInfoController">${SelectDibDto.book_name}</a></td>
+				<td onclick="location.href='${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${SelectDibDto.book_no}'" style="cursor:pointer;"><a href="/shopping/controller/book/bookInfoController">${SelectDibDto.book_no}</a></td>
+				<td onclick="location.href='${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${SelectDibDto.book_no}'" style="cursor:pointer;">${SelectDibDto.book_name}</td>
 
-				<td><a href="/shopping/controller/book/bookInfoController">${SelectDibDto.author_name}
-						외 ${SelectDibDto.authorList.size()-1}명</a></td>
+				<td onclick="location.href='${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${SelectDibDto.book_no}'" style="cursor:pointer;">${SelectDibDto.author_name}
+						외 ${SelectDibDto.authorList.size()-1}명</td>
 				<td>
 					<div>
 						<button value="${SelectDibDto.book_no}"
