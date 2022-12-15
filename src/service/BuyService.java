@@ -29,7 +29,7 @@ public class BuyService {
 	}
 
     // 주문  orderDto = 주문 기본 정보(배송지, 배송메모, 수령인 이름, 전화번호...etc), OrderdetailDto = 어떤 책 몇권 * n
-	public boolean buy(OrderDto orderDto, ArrayList<OrderdetailDto> list) {
+	public String buy(OrderDto orderDto, ArrayList<OrderdetailDto> list) {
 		Connection conn = null;
 		boolean result = false;
 		
@@ -43,8 +43,7 @@ public class BuyService {
 		int totalOrderMoney = getTotalOrderPrice(list);
 		
 		if(userChargeMoney < totalOrderMoney) {
-			System.out.println("금액 부족");
-			return false;
+			return "잔액 부족";
 		}
 		
 		//주문 수량과 책 보유량 비교
@@ -53,8 +52,7 @@ public class BuyService {
 			book.setBook_no(list.get(i).getBook_no());
 			BookDto foundBook = bookStore(book);
 			if(list.get(i).getOd_qty() > foundBook.getBook_store()) {
-				System.out.println("재고부족");
-				return false;
+				return "재고 부족";
 			}
 		
 		}
@@ -71,7 +69,7 @@ public class BuyService {
 				e.printStackTrace();
 			}
 		}
-		return result;
+		return "구매 성공";
 	}
 	//주문받은 총 가격 구하기
 	public int getTotalOrderPrice(ArrayList<OrderdetailDto> list) {

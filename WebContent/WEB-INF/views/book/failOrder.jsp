@@ -1,4 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -33,8 +35,20 @@
 			<div class="container">
 				<h2>실행 결과 </h2>
 				<div class="card">
-					<div class="card-body">주문을 처리하지 못했습니다. 다시 시도 부탁드립니다.</div>
-					<div><a class="btn btn-sm" style="margin:auto; display:block;" href="${pageContext.request.contextPath}">메인페이지 가기</a></div>
+					<div class="card-body">
+						<c:if test="${result eq '재고 부족'}">
+							<div style="font-weight: bold;"> 현재 재고부족으로 주문이 불가능합니다. 이용에 불편을 드려 죄송합니다.</div>
+						</c:if>
+						<c:if test="${result eq '잔액 부족'}">
+							<div style="font-weight: bold;"> 잔액이 부족하여 주문이 불가능합니다. 충전 후 이용해 주시길 바랍니다. 감사합니다.</div>
+						</c:if>
+						
+						
+						<div>
+							<a class="btn btn-sm" style="margin:auto; display:block;" href="${pageContext.request.contextPath}">메인페이지 가기</a>
+						</div>
+					
+					</div>
 				</div>			
 			</div>
 		</div>

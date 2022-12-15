@@ -33,8 +33,13 @@
 			<div class="container">
 				<h2>실행 결과 </h2>
 				<div class="card">
-					<div class="card-body">주문이 완료되었습니다. 이용해주셔서 감사합니다.</div>
-					<div><a class="btn btn-sm" style="margin:auto; display:block;" href="${pageContext.request.contextPath}">메인페이지 가기</a></div>
+					<div class="card-body">
+						<div style="font-weight: bold;">주문이 완료되었습니다. 이용해 주셔서 감사합니다.</div>
+						<div>
+							<a class="btn btn-sm" style="margin:auto; display:block;" href="${pageContext.request.contextPath}">메인페이지 가기</a>
+						</div>
+					
+					</div>
 				</div>			
 			</div>
 		</div>
