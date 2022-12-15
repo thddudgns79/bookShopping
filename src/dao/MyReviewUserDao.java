@@ -18,7 +18,7 @@ public class MyReviewUserDao {
 		ArrayList<ReviewDto> list = new ArrayList<>();
 		try {
 			String sql = "select *"
-					+ " from( select rownum rnum, review_no, book_name, to_char(review_date,'yyyy-mm-dd') as review_date,review_content, review_score, user_id"
+					+ " from( select rownum rnum, r.book_no, review_no, book_name, to_char(review_date,'yyyy-mm-dd') as review_date,review_content, review_score, user_id"
 					+ " from reviews r, books b"
 					+ " where r.book_no = b.book_no and user_id = ? and rownum <= ? )"
 					+ " where rnum >= ?";
@@ -36,6 +36,7 @@ public class MyReviewUserDao {
 				reviewDto.setReview_content(rs.getString("review_content"));
 				reviewDto.setReview_score(rs.getInt("review_score"));
 				reviewDto.setUser_id(rs.getString("user_id"));
+				reviewDto.setBook_no(rs.getInt("book_no"));
 				
 				list.add(reviewDto);
 			}

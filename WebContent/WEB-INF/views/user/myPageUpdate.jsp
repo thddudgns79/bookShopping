@@ -78,11 +78,11 @@
 		</div>
 		
 		<div class = "row justify-content-center align-items-center">
-<<<<<<< HEAD
+
 			<div class = "col-sm-3"><a href = "${pageContext.request.contextPath}/controller/book/bookMainController?searchType=1&categoryNo=1&subCategoryNo=1&pageNo=1"><img src = "${pageContext.request.contextPath}/resources/images/imageOfbookList/mainLogo.png" class = "w-75 h-75"/></a></div>
-=======
+
 			<div class = "col-sm-3"><a href = "#"><img src = "/shopping/resources/images/imageOfbookList/mainLogo.png" class = "w-75 h-75"/></a></div>
->>>>>>> branch 'master' of https://github.com/thddudgns79/newBookShopping.git
+
 			<div class = "col-sm-5"><input type="text" class="form-control" placeholder="책제목/저자명/출판사/해시태그 검색"></div>
 			<div class = "col-sm-2"><button class = "btn btn-primary">검색</button></div>
 			<div class = "col-sm-1 pr-0"><a href = "/shopping/controller/user/cartDetailController"><img src = "/shopping/resources/images/imageOfbookList/장바구니.png" class = "rounded w-50 h-50"/></a></div>

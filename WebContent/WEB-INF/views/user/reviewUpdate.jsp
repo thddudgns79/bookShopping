@@ -38,7 +38,7 @@
 			<div class = "mt-3 mb-3">
 				<img src = "/bookShopping/imageOfbookList/책11.png" style = "width : 75px; height : 100px" class = "mr-3"/><span class = "font-weight-bold"></span>
 			</div>
-			<form method="post" action = "/shopping/controller/user/reviewUpdateController">
+			<form method="post" action = "${pageContext.request.contextPath}/controller/user/reviewUpdateController">
 				<div class = "form-group">
 					<div class = "font-weight-bold" style = "font-size : 15px">평점</div>
 					<div class = "form-check-inline">

@@ -43,6 +43,7 @@ public class BuyService {
 		int totalOrderMoney = getTotalOrderPrice(list);
 		
 		if(userChargeMoney < totalOrderMoney) {
+			System.out.println("금액 부족");
 			return false;
 		}
 		
@@ -52,6 +53,7 @@ public class BuyService {
 			book.setBook_no(list.get(i).getBook_no());
 			BookDto foundBook = bookStore(book);
 			if(list.get(i).getOd_qty() > foundBook.getBook_store()) {
+				System.out.println("재고부족");
 				return false;
 			}
 		

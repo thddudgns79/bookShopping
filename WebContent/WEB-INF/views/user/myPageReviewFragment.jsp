@@ -8,13 +8,15 @@
 		<div class="review card">
 			<div class="card-header container-fluid">
 				<div class="row">
-					<div class="col-10">
-						<a href="../book/bookInfo.html"> <span>${reviewDto.review_no}. ${reviewDto.book_name}</span></a>
-		
-						<!-- <span>thddudgns79</span> |  -->
-						<span>${reviewDto.review_date}</span> | <span>평점 :
-							${reviewDto.review_score}점</span>
-					</div>
+						<div class="col-10">
+							 <a href="${pageContext.request.contextPath}/controller/book/bookInfoController?bookNo=${reviewDto.book_no}">
+								 <span>${reviewDto.review_no}. ${reviewDto.book_name}</span>
+							 </a>
+			
+							<!-- <span>thddudgns79</span> |  -->
+							<span>${reviewDto.review_date}</span> | <span>평점 :
+								${reviewDto.review_score}점</span>
+						</div>
 					<div>
 						<a class="btn btn-primary  btn-sm mb-2 mr-3"
 							style="background-color: rgb(88, 39, 35);"
